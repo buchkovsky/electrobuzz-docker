@@ -1,9 +1,12 @@
 FROM php:7.2-fpm-alpine
 
+RUN apk update
+
 RUN apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
         curl-dev \
         imagemagick-dev \
+	ffmpeg \
         libtool \
         libxml2-dev \
         postgresql-dev \
@@ -28,7 +31,6 @@ RUN apk add --no-cache --virtual .build-deps \
         tokenizer \
         xml \
         zip \
-	ffmpeg \
     && curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer \
     && apk del -f .build-deps
 
