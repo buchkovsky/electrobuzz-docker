@@ -6,17 +6,17 @@ RUN apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
         curl-dev \
         imagemagick-dev \
-	ffmpeg \
         libtool \
         libxml2-dev \
         postgresql-dev \
         sqlite-dev \
     && apk add --no-cache \
-        curl \
+	curl \
         git \
         imagemagick \
         mysql-client \
         postgresql-libs \
+    && apk update && apk add --no-cache ffmpeg \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && docker-php-ext-install \
